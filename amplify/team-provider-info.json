@@ -18,7 +18,8 @@
       "function": {
         "servecommercelabs55efc8d2PostConfirmation": {
           "GROUP": "Admin"
-        }
+        },
+        "servecommercelabsfunction": {}
       }
     }
   }
