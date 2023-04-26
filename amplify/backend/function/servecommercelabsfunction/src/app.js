@@ -32,6 +32,31 @@ const region = process.env.REGION
 const ddb_table_name = process.env.STORAGE_PRODUCTTABLE_NAME
 const docClient = new AWS.DynamoDB.DocumentClient({region})
 
+const getGroupsForUser = async(event) => {
+  let userSub = event.requestContext
+        .identity
+        .cognitoAuthenticationProvider
+        .split(':CognitoSignIn:')[1]
+  
+  let userParams = {
+    UserPoolId: userpollId,
+    Filter: `sub = "${userSub}`,
+  }
+
+  let userData = await cognito.listUsers(userParams).promise()
+
+  const user = userData.Users[0]
+  var groupParams = {
+    UserPoolId: userpoolID,
+    Username: user.username
+  }
+
+  const groupData = await cognito.adminListGroupsForUser(groupParams).promise()
+
+  return groupData
+
+}
+
 // declare a new express app
 const app = express()
 app.use(bodyParser.json())
