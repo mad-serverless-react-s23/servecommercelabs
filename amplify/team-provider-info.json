@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-servecommercelabs-dev-115651-authRole",
+      "UnauthRoleArn": "arn:aws:iam::230395760767:role/amplify-servecommercelabs-dev-115651-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::230395760767:role/amplify-servecommercelabs-dev-115651-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-servecommercelabs-dev-115651-deployment",
+      "UnauthRoleName": "amplify-servecommercelabs-dev-115651-unauthRole",
+      "StackName": "amplify-servecommercelabs-dev-115651",
+      "StackId": "arn:aws:cloudformation:us-east-2:230395760767:stack/amplify-servecommercelabs-dev-115651/571732b0-e453-11ed-a0df-02127141ed91",
+      "AmplifyAppId": "d2pcjwzdgh4zpn"
+    }
+  }
+}
