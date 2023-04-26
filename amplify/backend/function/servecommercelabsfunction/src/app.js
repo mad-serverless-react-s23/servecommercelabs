@@ -52,9 +52,25 @@ const getGroupsForUser = async(event) => {
   }
 
   const groupData = await cognito.adminListGroupsForUser(groupParams).promise()
-
   return groupData
+}
 
+const canPerformAction = async(event, group) => {
+  return new Promise(async (resolve, reject) => {
+    if (!event.requestContext.identity.cognitoAuthenticationProvider) {
+      return reject()
+    }
+
+    const groupData = await getGroupsForUser(event)
+
+    const groupsForUser = groupData.Groups.map(group => group.GroupName)
+
+    if (groupsForUser.includes(group)) {
+      resolve()
+    } else {
+      reject('Hey! What are you doing here? You are not allowed to do that!')
+    }
+  })
 }
 
 // declare a new express app
