@@ -109,6 +109,21 @@ app.post('/products', async function(req, res) {
   }
 });
 
+app.delete('/products', async function(req, res) {
+  const { event } = req.apiGateway
+  try {
+    await canPerformAction(event, 'Admin')
+    var params = {
+      TableName : ddb_table_name,
+      Key: { id: req.body.id }
+    }
+    await docClient.delete(params).promise()
+    res.json({ success: 'Aw, why did you go and do that?' })
+  } catch (err) {
+    res.json({ error: err })
+  }
+});
+
 // declare a new express app
 const app = express()
 app.use(bodyParser.json())
