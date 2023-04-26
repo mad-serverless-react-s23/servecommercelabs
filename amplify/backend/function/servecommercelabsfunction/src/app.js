@@ -73,6 +73,25 @@ const canPerformAction = async(event, group) => {
   })
 }
 
+app.get('/products', async function(req, res) {
+  try {
+    const data = await getItems()
+    res.json({ data: data })
+  } catch (err) {
+    res.json ({ error: err })
+  }
+})
+
+async function getItems() {
+  var params = { TableName: ddb_table_name }
+  try {
+    const data = await docClient.scan(params).promise()
+    return data
+  } catch (err) {
+    return err
+  }
+}
+
 // declare a new express app
 const app = express()
 app.use(bodyParser.json())
