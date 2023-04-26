@@ -92,6 +92,23 @@ async function getItems() {
   }
 }
 
+app.post('/products', async function(req, res) {
+  const { body } = req
+  const { event } = req.apiGateway
+  try {
+    await canPerformAction(event, 'Admin')
+    const input = { ...body, id: uuid() }
+    var params = {
+      TableName: ddb_table_name,
+      Item: input
+    }
+    await docClient.put(params).promise()
+    res.json({ success: 'Om-nom-nom MMMM database loved that item'})
+  } catch (err) {
+    res.json({ error: err })
+  }
+});
+
 // declare a new express app
 const app = express()
 app.use(bodyParser.json())
