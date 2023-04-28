@@ -73,16 +73,7 @@ const canPerformAction = async(event, group) => {
   })
 }
 
-app.get('/products', async function(req, res) {
-  try {
-    const data = await getItems()
-    res.json({ data: data })
-  } catch (err) {
-    res.json ({ error: err })
-  }
-})
-
-async function getItems() {
+const getItems = async() => {
   var params = { TableName: ddb_table_name }
   try {
     const data = await docClient.scan(params).promise()
@@ -92,6 +83,43 @@ async function getItems() {
   }
 }
 
+// declare a new express app
+const app = express()
+app.use(bodyParser.json())
+app.use(awsServerlessExpressMiddleware.eventContext())
+
+// Enable CORS for all methods
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Headers", "*")
+  next()
+});
+
+/**********************
+ * Example get method *
+ **********************/
+app.get('/products', async function(req, res) {
+  try {
+    const data = await getItems()
+    res.json({ data: data })
+  } catch (err) {
+    res.json ({ error: err })
+  }
+})
+
+app.get('/products', function(req, res) {
+  // Add your code here
+  res.json({success: 'get call succeed!', url: req.url});
+});
+
+app.get('/products/*', function(req, res) {
+  // Add your code here
+  res.json({success: 'get call succeed!', url: req.url});
+});
+
+/****************************
+* Example post method *
+****************************/
 app.post('/products', async function(req, res) {
   const { body } = req
   const { event } = req.apiGateway
@@ -108,52 +136,6 @@ app.post('/products', async function(req, res) {
     res.json({ error: err })
   }
 });
-
-app.delete('/products', async function(req, res) {
-  const { event } = req.apiGateway
-  try {
-    await canPerformAction(event, 'Admin')
-    var params = {
-      TableName : ddb_table_name,
-      Key: { id: req.body.id }
-    }
-    await docClient.delete(params).promise()
-    res.json({ success: 'Aw, why did you go and do that?' })
-  } catch (err) {
-    res.json({ error: err })
-  }
-});
-
-// declare a new express app
-const app = express()
-app.use(bodyParser.json())
-app.use(awsServerlessExpressMiddleware.eventContext())
-
-// Enable CORS for all methods
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*")
-  res.header("Access-Control-Allow-Headers", "*")
-  next()
-});
-
-
-/**********************
- * Example get method *
- **********************/
-
-app.get('/products', function(req, res) {
-  // Add your code here
-  res.json({success: 'get call succeed!', url: req.url});
-});
-
-app.get('/products/*', function(req, res) {
-  // Add your code here
-  res.json({success: 'get call succeed!', url: req.url});
-});
-
-/****************************
-* Example post method *
-****************************/
 
 app.post('/products', function(req, res) {
   // Add your code here
@@ -182,7 +164,20 @@ app.put('/products/*', function(req, res) {
 /****************************
 * Example delete method *
 ****************************/
-
+app.delete('/products', async function(req, res) {
+  const { event } = req.apiGateway
+  try {
+    await canPerformAction(event, 'Admin')
+    var params = {
+      TableName : ddb_table_name,
+      Key: { id: req.body.id }
+    }
+    await docClient.delete(params).promise()
+    res.json({ success: 'Aw, why did you go and do that?' })
+  } catch (err) {
+    res.json({ error: err })
+  }
+});
 app.delete('/products', function(req, res) {
   // Add your code here
   res.json({success: 'delete call succeed!', url: req.url});
