@@ -1,9 +1,9 @@
-import React from 'react'
-import './App.css'
+import React from 'react';
+import './App.css';
+import { Authenticator } from '@aws-amplify/ui-react';
 
-import { Authenticator } from '@aws-amplify/ui-react'
-
-const Profile = () => {
+const Profile = () => { // if user is signed in, show sign out button
+  // not signed in, show the sign-in form
   return (
     <div style={containerStyle}>
       <Authenticator />
