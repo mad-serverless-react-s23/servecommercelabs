@@ -23,7 +23,7 @@ function Admin() {
         body: { ...itemInfo, price: parseInt(itemInfo.price) }
       }
       updateItemInfo(initialState)
-      await API.post('ecommerceapi', '/products', data)
+      await API.post('servecommercelabsapi', '/products', data)
     } catch (err) {
       console.log('error adding item...')
     }
