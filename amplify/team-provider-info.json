@@ -9,7 +9,9 @@
       "UnauthRoleName": "amplify-servecommercelabs-dev-115651-unauthRole",
       "StackName": "amplify-servecommercelabs-dev-115651",
       "StackId": "arn:aws:cloudformation:us-east-2:230395760767:stack/amplify-servecommercelabs-dev-115651/571732b0-e453-11ed-a0df-02127141ed91",
-      "AmplifyAppId": "d2pcjwzdgh4zpn"
+      "AmplifyAppId": "d2pcjwzdgh4zpn",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-servecommercelabs-dev-115651-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-servecommercelabs-dev-115651-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "auth": {
@@ -17,9 +19,20 @@
       },
       "function": {
         "servecommercelabs55efc8d2PostConfirmation": {
-          "GROUP": "Admin"
+          "GROUP": "Admin",
+          "deploymentBucketName": "amplify-servecommercelabs-dev-115651-deployment",
+          "s3Key": "amplify-builds/servecommercelabs55efc8d2PostConfirmation-3662344d44436c6f5170-build.zip"
         },
-        "servecommercelabsfunction": {}
+        "servecommercelabsfunction": {
+          "deploymentBucketName": "amplify-servecommercelabs-dev-115651-deployment",
+          "s3Key": "amplify-builds/servecommercelabsfunction-624479486f30396c444a-build.zip"
+        }
+      },
+      "storage": {
+        "producttable": {}
+      },
+      "api": {
+        "servecommercelabsapi": {}
       }
     }
   }
