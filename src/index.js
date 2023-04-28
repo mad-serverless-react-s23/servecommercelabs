@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import reportWebVitals from './reportWebVitals';
 import Router from './Router';
 import 'antd/dist/reset.css';
 import { Amplify } from 'aws-amplify';
@@ -14,5 +13,3 @@ root.render(
     <Router />
   </React.StrictMode>
 );
-
-reportWebVitals();
