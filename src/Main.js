@@ -14,7 +14,7 @@ function Main() {
     return () => didCancel = true
   }, [])
   async function getProducts() {
-    const data = await API.get('ecommerceapi', '/products')
+    const data = await API.get('servecommercelabsapi', '/products')
     console.log('data: ', data)
     if (didCancel) return
     setState({
@@ -25,7 +25,7 @@ function Main() {
     try {
       const products = state.products.filter(p => p.id !== id)
       setState({ ...state, products })
-      await API.del('ecommerceapi', '/products', { body: { id } })
+      await API.del('servecommercelabsapi', '/products', { body: { id } })
       console.log('successfully deleted item')
     } catch (err) {
       console.log('error: ', err)
