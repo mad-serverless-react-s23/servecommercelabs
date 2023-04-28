@@ -26,7 +26,7 @@ const cognito = new AWS.CognitoIdentityServiceProvider({
   apiVersion: '2016-04-18'
 })
 
-var userpoolID = process.env.AUTH_SERVECOMMERCELABS55EFC8D2_USERPOOLID
+var userpoolId = process.env.AUTH_SERVECOMMERCELABS55EFC8D2_USERPOOLID
 
 const region = process.env.REGION
 const ddb_table_name = process.env.STORAGE_PRODUCTTABLE_NAME
@@ -39,7 +39,7 @@ const getGroupsForUser = async(event) => {
         .split(':CognitoSignIn:')[1]
   
   let userParams = {
-    UserPoolId: userpollId,
+    UserPoolId: userpoolId,
     Filter: `sub = "${userSub}`,
   }
 
@@ -47,7 +47,7 @@ const getGroupsForUser = async(event) => {
 
   const user = userData.Users[0]
   var groupParams = {
-    UserPoolId: userpoolID,
+    UserPoolId: userpoolId,
     Username: user.username
   }
 
