@@ -36,6 +36,7 @@ const Main = () => {
   }
   return (
     <Container>
+      <h1>Welcome to the home page!</h1>
       <List
         itemLayout="horizontal"
         dataSource={state.products}
