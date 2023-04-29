@@ -21,7 +21,7 @@
         "servecommercelabs55efc8d2PostConfirmation": {
           "GROUP": "Admin",
           "deploymentBucketName": "amplify-servecommercelabs-dev-115651-deployment",
-          "s3Key": "amplify-builds/servecommercelabs55efc8d2PostConfirmation-3662344d44436c6f5170-build.zip"
+          "s3Key": "amplify-builds/servecommercelabs55efc8d2PostConfirmation-46324b6379786f5a6d56-build.zip"
         },
         "servecommercelabsfunction": {
           "deploymentBucketName": "amplify-servecommercelabs-dev-115651-deployment",
