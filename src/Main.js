@@ -30,7 +30,8 @@ const Main = () => {
       await API.del('servecommercelabsapi', '/products', { body: { id } })
       console.log('Well, that item is gone.')
     } catch (err) {
-      console.log('error: ', err)
+      console.error('It may not be gone: ', err)
+      // products in ui update from backend in event of error?
     }
   }
   return (
