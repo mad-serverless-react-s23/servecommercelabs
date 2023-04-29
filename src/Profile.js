@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Authenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 
 const Profile = () => { // if user is signed in, show sign out button
   // not signed in, show the sign-in form
