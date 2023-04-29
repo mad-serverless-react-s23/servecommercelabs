@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
+import { Button } from 'antd';
 
 const Profile = () => { // if user is signed in, show sign out button
   // not signed in, show the sign-in form
@@ -14,7 +15,7 @@ const Profile = () => { // if user is signed in, show sign out button
           <h1>Content!</h1>
           <h2>This is your profile, I guess</h2>
           <h3>{user.username}</h3>
-          <button onClick={signOut}>Click to sign out?</button>
+          <Button onClick={signOut}>Click to sign out?</Button>
           </>
         )}
       </Authenticator>
