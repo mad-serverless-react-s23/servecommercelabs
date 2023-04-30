@@ -3,7 +3,7 @@ import './App.css';
 import { Input, Button } from 'antd';
 
 import { API } from 'aws-amplify';
-import { Authenticator } from '@aws-amplify/ui-react';
+// import { withAuthenticator } from '@aws-amplify/ui-react';
 
 const initialState = {
   name: '', price: ''
@@ -29,29 +29,26 @@ const Admin = () => {
     }
   }
   return (
-    <Authenticator>
-      <div style={containerStyle}>
-        <Input
-          name='name'
-          onChange={updateForm}
-          value={itemInfo.name}
-          placeholder='What is this?'
-          style={inputStyle}
-        />
-        <Input
-          name='price'
-          onChange={updateForm}
-          value={itemInfo.price}
-          style={inputStyle}
-          placeholder='How much is it?'
-        />
-        <Button
-          style={buttonStyle}
-          onClick={addItem}
-        >Put it on the digital shelf</Button>
-      </div>
-    </Authenticator>
-    
+    <div style={containerStyle}>
+      <Input
+        name='name'
+        onChange={updateForm}
+        value={itemInfo.name}
+        placeholder='What is this?'
+        style={inputStyle}
+      />
+      <Input
+        name='price'
+        onChange={updateForm}
+        value={itemInfo.price}
+        style={inputStyle}
+        placeholder='How much is it?'
+      />
+      <Button
+        style={buttonStyle}
+        onClick={addItem}
+      >Put it on the digital shelf</Button>
+    </div>
   );
 }
 
