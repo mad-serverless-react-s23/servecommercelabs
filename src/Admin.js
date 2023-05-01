@@ -25,7 +25,7 @@ const Admin = () => {
       updateItemInfo(initialState);
       await API.post('servecommercelabsapi', '/products', data);
     } catch (err) {
-      console.err('We do not sell such things. ', err);
+      console.log('We do not sell such things. ', err);
     }
   }
   return (
