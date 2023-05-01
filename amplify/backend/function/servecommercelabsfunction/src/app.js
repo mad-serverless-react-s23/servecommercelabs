@@ -40,7 +40,7 @@ const getGroupsForUser = async(event) => {
   
   let userParams = {
     UserPoolId: userpoolId,
-    Filter: `sub = "${userSub}"`,
+    Filter: `sub = "${userSub}`,
   }
 
   let userData = await cognito.listUsers(userParams).promise()
@@ -48,7 +48,7 @@ const getGroupsForUser = async(event) => {
   const user = userData.Users[0]
   var groupParams = {
     UserPoolId: userpoolId,
-    Username: user.Username
+    Username: user.username
   }
 
   const groupData = await cognito.adminListGroupsForUser(groupParams).promise()
